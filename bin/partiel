@@ -1,0 +1,28 @@
+#!/bin/sh
+
+export AUTO_CORRECT_DIR="/home/romain/Projects/auto-correct"
+export AUTO_CORRECT_ANSWERS_DIR="${AUTO_CORRECT_DIR}/answers/${USER}"
+
+PATH="${AUTO_CORRECT_DIR}/bin:${PATH}"
+PS1=" \[\033[31m\]* \$\[\033[0m\] "
+
+cat <<EOT
+
+[36m------------------------------------ 8< ------------------------------------
+Ce shell vous permet de faire l'examen, vérifier vos réponses et connaître
+votre note \\o/.
+
+Les commandes suivantes sont disponibles dans ce shell:
+  [32msubject[36m - affiche le sujet de la question courante
+  [32mnext[36m    - passe à la question suivante si la réponse à la question
+            courante est correcte
+  [32mskip[36m    - passe à la question suivante
+  [32mgrade[36m   - affiche votre note à l'examen
+
+Vous enregistrerez votre travail dans le répertoire suivant:
+[33m${AUTO_CORRECT_ANSWERS_DIR}[36m
+
+Il va falloir le créer, aussi pour commencer, tappez [32mnext[36m…
+------------------------------------ 8< ------------------------------------[0m
+
+EOT

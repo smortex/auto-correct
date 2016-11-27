@@ -1,0 +1,13 @@
+#!/bin/sh
+n=0
+sum=0
+for checker in "$AUTO_CORRECT_DIR/checkers"/*; do
+    n=$((n+1))
+    if (sh "$checker") > /dev/null 2>&1; then
+	sum=$(($sum + 1))
+    fi
+done
+
+cp=$((2000 * $sum / $n))
+
+printf '%d.%02d\n' "$(($cp / 100))" "$((cp % 100))"

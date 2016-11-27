@@ -1,0 +1,13 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]; then
+    Q=$1
+else
+    if [ ! -f "$AUTO_CORRECT_ANSWERS_DIR/.q" ]; then
+	Q=$(ls "$AUTO_CORRECT_DIR/questions" | head -n1)
+    else
+	Q=$(cat "$AUTO_CORRECT_ANSWERS_DIR/.q")
+    fi
+fi
+
+sed "s,@@AUTO_CORRECT_ANSWERS_DIR@@,$AUTO_CORRECT_ANSWERS_DIR," "$AUTO_CORRECT_DIR/questions/$Q"

@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [ $# -eq 1 ]; then
+    Q=$1
+else
+    if [ ! -f "$AUTO_CORRECT_ANSWERS_DIR/.q" ]; then
+	Q=$(ls "$AUTO_CORRECT_DIR/questions" | head -n1)
+    else
+	Q=$(cat "$AUTO_CORRECT_ANSWERS_DIR/.q")
+    fi
+fi
+
+if (sh $AUTO_CORRECT_DIR/checkers/$Q) > /dev/null 2>&1; then
+    echo "[  [32mOK[0m  ] ($Q) $(head -n1 "$AUTO_CORRECT_DIR/questions/$Q")"
+else
+    if [ -z "$SKIP" ]; then
+	printf "[ [31mFAIL[0m ] ($Q) "
+	sed "s,@@AUTO_CORRECT_ANSWERS_DIR@@,$AUTO_CORRECT_ANSWERS_DIR," "$AUTO_CORRECT_DIR/questions/$Q"
+	exit
+    else
+	printf "[ [33mSKIP[0m ] ($Q) "
+	head -n1 "$AUTO_CORRECT_DIR/questions/$Q"
+    fi
+fi
+unset SKIP
+move_next $Q && $0 || finished

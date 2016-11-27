@@ -1,0 +1,12 @@
+#!/bin/sh
+
+Q=$1
+
+NQ=$(ls "$AUTO_CORRECT_DIR/questions" | grep -A1 -F "$Q" | tail -n1)
+if [ "$Q" = "$NQ" ]; then
+    rm "$AUTO_CORRECT_ANSWERS_DIR/.q"
+    exit 1
+else
+    echo $NQ > "$AUTO_CORRECT_ANSWERS_DIR/.q"
+    exit 0
+fi
