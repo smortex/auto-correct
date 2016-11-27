@@ -1,0 +1,3 @@
+set -e
+[ -d "${AUTO_CORRECT_ANSWERS_DIR}" ]
+ls -ld ${AUTO_CORRECT_ANSWERS_DIR} | grep -q '^drwx------'
