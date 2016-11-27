@@ -10,7 +10,9 @@ else
     fi
 fi
 
-if (sh $AUTO_CORRECT_DIR/checkers/$Q) > /dev/null 2>&1; then
+if [ ! -f "$AUTO_CORRECT_DIR/checkers/$Q" ]; then
+    echo "[ [34mINFO[0m ] ($Q) $(head -n1 "$AUTO_CORRECT_DIR/questions/$Q")"
+elif (sh "$AUTO_CORRECT_DIR/checkers/$Q") > /dev/null 2>&1; then
     echo "[  [32mOK[0m  ] ($Q) $(head -n1 "$AUTO_CORRECT_DIR/questions/$Q")"
 else
     if [ -z "$SKIP" ]; then
