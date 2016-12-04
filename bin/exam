@@ -17,6 +17,7 @@ Les commandes suivantes sont disponibles dans ce shell:
   [32mnext[36m    - passe à la question suivante si la réponse à la question
             courante est correcte
   [32mskip[36m    - passe à la question suivante
+  [32mrestart[36m - se repositionner à la première question
   [32mgrade[36m   - affiche votre note à l'examen
 
 Vous enregistrerez votre travail dans le répertoire suivant:
